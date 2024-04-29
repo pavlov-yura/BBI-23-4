@@ -1,0 +1,7 @@
+C:\Users\Asus\source\repos\BBI-23-4\Lab_7\7.3\bin\Debug\7.3.exe.config
+C:\Users\Asus\source\repos\BBI-23-4\Lab_7\7.3\bin\Debug\7.3.exe
+C:\Users\Asus\source\repos\BBI-23-4\Lab_7\7.3\bin\Debug\7.3.pdb
+C:\Users\Asus\source\repos\BBI-23-4\Lab_7\7.3\obj\Debug\7.3.csproj.AssemblyReference.cache
+C:\Users\Asus\source\repos\BBI-23-4\Lab_7\7.3\obj\Debug\7.3.csproj.CoreCompileInputs.cache
+C:\Users\Asus\source\repos\BBI-23-4\Lab_7\7.3\obj\Debug\7.3.exe
+C:\Users\Asus\source\repos\BBI-23-4\Lab_7\7.3\obj\Debug\7.3.pdb
