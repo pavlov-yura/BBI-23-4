@@ -43,6 +43,8 @@ namespace _7._2
                     i++;
                     j--;
                 }
+                QuickSort(sportsman, a, j);
+                QuickSort(sportsman, i, b);
             }
         }
         public abstract string Discipline { get; }

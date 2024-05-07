@@ -20,6 +20,7 @@ namespace _7._3
                 Score = score;
             }
             public abstract void Print();
+
         }
 
         class WomanTeam : Team
