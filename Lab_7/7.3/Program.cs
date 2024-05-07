@@ -53,7 +53,7 @@ namespace _7._3
             PrintResults(groupMan);
 
             Console.WriteLine($"\nРезультаты команды победителей: "); //Результаты команды победителя
-            PrintResults(FindWinner(groupWoman, groupMan));
+            FindWinner(groupWoman, groupMan).Print();
         }
 
         static void PrintResults(Team[] group) //вывод
@@ -63,19 +63,10 @@ namespace _7._3
                 participant.Print();
             }
         }
-        static int TotalScore(Team[] group)  //подсчёт общих очков
+        static Team FindWinner(Team[] group1, Team[] group2)  //нахождение команды победителя
         {
-            int total = 0;
-            foreach (var participant in group)
-            {
-                total += participant.Result;
-            }
-            return total;
-        }
-        static Team[] FindWinner(Team[] group1, Team[] group2)  //нахождение команды победителя
-        {
-            if (TotalScore(group1) > TotalScore(group2)) { return group1; }
-            else { return group2; };
+            if (group1[0].Result > group2[0].Result) { return group1[0]; }
+            else { return group2[0]; };
         }
         static void Sortirovka(Team[] info)
         {

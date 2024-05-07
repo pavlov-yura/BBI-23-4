@@ -20,6 +20,31 @@ namespace _7._2
             for (int i = 0; i < Marks.Length; i++) { Summ += Marks[i]; }
         }
         public void Print() => Console.WriteLine("{0}\t {1}", Name, Summ);
+        public static void QuickSort(Jump[] sportsman, int a, int b)
+        {
+            Jump mind = sportsman[(a + b) / 2];
+            int i = a;
+            int j = b;
+            while (i <= j)
+            {
+                while (sportsman[i].SummMarks > mind.SummMarks)
+                {
+                    i++;
+                }
+                while (sportsman[j].SummMarks < mind.SummMarks)
+                {
+                    j--;
+                }
+                if (i <= j)
+                {
+                    Jump jump = sportsman[i];
+                    sportsman[i] = sportsman[j];
+                    sportsman[j] = jump;
+                    i++;
+                    j--;
+                }
+            }
+        }
         public abstract string Discipline { get; }
     }
     public class Jumpin3m : Jump
@@ -48,7 +73,7 @@ namespace _7._2
             foreach (var sportsmen in sportsman)
                 sportsmen.Print();
 
-            Сортировка(sportsman);
+            Jump.QuickSort(sportsman, 0, sportsman.Length - 1);
 
             Console.WriteLine();
             Console.WriteLine("Место\tФамилия\t Набранные баллы");
@@ -56,22 +81,6 @@ namespace _7._2
             {
                 Console.Write($"{i + 1}\t");
                 sportsman[i].Print();
-            }
-        }
-
-        static void Сортировка(Jump[] sportsman)
-        {
-            for (int i = 0; i < sportsman.Length - 1; i++)
-            {
-                for (int j = i + 1; j < sportsman.Length; j++)
-                {
-                    if (sportsman[j].SummMarks > sportsman[i].SummMarks)
-                    {
-                        Jump temp = sportsman[j];
-                        sportsman[j] = sportsman[i];
-                        sportsman[i] = temp;
-                    }
-                }
             }
         }
     }
