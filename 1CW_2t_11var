@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _11._2
+{
+    internal class Program
+    {
+        abstract class Profession
+        {
+            protected string Sphere;
+            protected int Waste;
+            //private int Uid;
+            public abstract int Zarplata();
+            protected string Describe;
+            public Profession(string sphere, int waste, string describe)
+            {
+                Sphere = sphere;
+                Waste = waste;
+                Describe = describe;
+            }
+            public void Print()
+            {
+                Console.WriteLine("{0}\t{1}\t{2}", Sphere, Waste, Describe);
+            }
+            public void Change(string text)
+            {
+                Describe = text;
+            }
+        }
+        class Fireman : Profession
+        {
+            protected int Overwaste;
+            public Fireman(string sphere, int waste, string describe,int overwaste) : base(sphere, waste, describe) 
+            {
+                Overwaste = overwaste;
+            }
+            public override int Zarplata()
+            {
+                return Waste + Overwaste;
+            }
+        }
+        class Engineer : Profession
+        {
+            protected int Kategory;
+            public Engineer(string sphere, int waste, string describe, int kategory) : base(sphere, waste, describe)
+            {
+                Kategory = kategory;
+            }
+            public override int Zarplata()
+            {
+                return Waste;
+            }
+        }
+        class Scientist : Profession
+        {
+            protected int Stepen;
+            public Scientist(string sphere, int waste, string describe, int stepen) : base(sphere, waste, describe)
+            {
+                Stepen = stepen;
+            }
+            public override int Zarplata()
+            {
+                return Waste;
+            }
+        }
+        static void Main(string[] args)
+        {
+            Fireman[] firemen = new Fireman[5] { new Fireman("Юрий", 10000, "Лучший", 1000), new Fireman("Сергей", 23000, "Лучший", 2000), new Fireman("Алексей", 25000, "Лучший", 2000), new Fireman("Владимир", 18000, "Лучший", 5000), new Fireman("Андрей", 25000, "Лучший", 3000) };
+            Engineer[] engineers = new Engineer[5] { new Engineer("Юрий", 10000, "Лучший", 1), new Engineer("Сергей", 23000, "Лучший", 2), new Engineer("Алексей", 25000, "Лучший", 2), new Engineer("Владимир", 18000, "Лучший", 3), new Engineer("Андрей", 25000, "Лучший", 1) };
+            Scientist[] scientists = new Scientist[5] { new Scientist("Юрий", 10000, "Лучший", 1), new Scientist("Сергей", 23000, "Лучший", 2), new Scientist("Алексей", 25000, "Лучший", 2), new Scientist("Владимир", 18000, "Лучший", 3), new Scientist("Андрей", 25000, "Лучший", 1) };
+            Console.WriteLine("Список пожарных");
+            Sortirovka(firemen);
+            for (int i = 0; i < firemen.Length; i++) { firemen[i].Print(); }
+            Console.WriteLine();
+            Console.WriteLine("Список инженеров");
+            Sortirovka(engineers);
+            for(int i = 0; i < engineers.Length; i++) { engineers[i].Print(); }
+            Console.WriteLine();
+            Console.WriteLine("Список учёных");
+            Sortirovka(scientists);
+            for (int i = 0; i < scientists.Length; i++) { scientists[i].Print(); }
+            Console.WriteLine();
+        }
+        static void Sortirovka(Profession[] profession)
+        {
+            for (int i = 0; i < profession.Length - 1; i++)
+                for (int j = i; j < profession.Length; j++)
+                {
+                    if (profession[i].Zarplata() < profession[j].Zarplata())
+                    {
+                        Profession pomoch = profession[i];
+                        profession[i] = profession[j];
+                        profession[j] = pomoch;
+                    }
+                }
+        }
+    }
+}
