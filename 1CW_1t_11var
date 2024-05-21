@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _11._1
+{
+    internal class Program
+    {
+        struct Profession
+        {
+            private string Sphere;
+            private int Waste;
+            //private int Uid;
+            public int Zarplata { get {  return Waste; } }
+            private string Describe;
+            public Profession(string sphere, int waste,string describe) 
+            {
+                Sphere = sphere;
+                Waste = waste;
+                Describe = describe;
+            }
+            public void Print()
+            {
+                Console.WriteLine("{0}\t{1}\t{2}",Sphere, Waste,Describe);
+            }
+            public void Change(string text)
+            {
+                Describe = text;
+            }
+        }
+        static void Main(string[] args)
+        {
+            Profession[] profession = new Profession[5] {new Profession("Medicine",60000,"Врач низкооплачиваемая работа для вас"), new Profession("Marketing", 70000, "Маркетолог низкооплачиваемая работа для вас"), new Profession("IT", 100000, "Программист низкооплачиваемая работа для вас"), new Profession("Chemistry", 50000, "Химик низкооплачиваемая работа для вас"), new Profession("Study", 65000, "Учитель низкооплачиваемая работа для вас"),};
+            Sortirovka(profession);
+            profession[0].Change("Вот это для вас самая подходящая работа");
+            for (int i = 0; i < profession.Length; i++) { profession[i].Print(); }
+        }
+        static void Sortirovka(Profession[] profession)
+        {
+            for (int i = 0;i < profession.Length-1;i++)
+                for (int j = i; j < profession.Length; j++)
+                {
+                    if (profession[i].Zarplata < profession[j].Zarplata)
+                    {
+                        Profession pomoch = profession[i];
+                        profession[i] = profession[j];
+                        profession[j] = pomoch;
+                    }
+                }
+        }
+    }
+}
