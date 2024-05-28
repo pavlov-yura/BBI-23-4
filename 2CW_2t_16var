@@ -1,0 +1,65 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _2CW_2t_16var
+{
+    internal static class Program
+    {
+        class Task
+        {
+            private string Text;
+            private char[] SkobkaOpen = {'(' , '{', '['};
+            private char[] SkobkaClose = { ')', '}', ']' };
+            private int[] KolvoSkobok = { 0, 0 ,0};
+            private bool SkobokHvataet = true;
+            public Task(string text) 
+            {
+                Text = text;
+            }
+            public override string ToString()
+            {
+                foreach (char ch in Text) 
+                {
+                    if (char.IsLetterOrDigit(ch) == false ) 
+                    {
+                        int k = 0;
+                        foreach (char i in SkobkaOpen)
+                        {
+                            if (i == ch) 
+                            {
+                                KolvoSkobok[k] += 1;
+                            }
+                            k++;
+                        }
+                        k = 0;
+                        foreach (char i in SkobkaClose)
+                        {
+                            if (i == ch)
+                            {
+                                KolvoSkobok[k] -= 1;
+                            }
+                            k++;
+                        }
+                    }
+                }
+                foreach (int i in KolvoSkobok)
+                {
+                    if (i != 0) { SkobokHvataet = false; }
+                }
+                Console.WriteLine(SkobokHvataet);
+                return base.ToString();
+            }
+        }
+        static void Main()
+        {
+            string text = "[5 + {(9 * 10) - } * 3] - 2 - 3";
+            Task task = new Task(text);
+            task.ToString();
+        }
+    }
+}
